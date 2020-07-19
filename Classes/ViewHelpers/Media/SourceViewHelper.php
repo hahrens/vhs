@@ -12,8 +12,8 @@ use FluidTYPO3\Vhs\Utility\FrontendSimulationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * Used in conjuntion with the `v:media.PictureViewHelper`.
@@ -95,7 +95,9 @@ class SourceViewHelper extends AbstractTagBasedViewHelper
             'quality',
             'integer',
             'Quality of the processed image. If blank/not present falls back to the default quality defined ' .
-            'in install tool.'
+            'in install tool.',
+            false,
+            $GLOBALS['TYPO3_CONF_VARS']['GFX']['jpg_quality']
         );
         $this->registerArgument('relative', 'boolean', 'Produce a relative URL instead of absolute', false, false);
     }

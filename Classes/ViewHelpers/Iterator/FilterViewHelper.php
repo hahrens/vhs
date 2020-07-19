@@ -11,14 +11,12 @@ namespace FluidTYPO3\Vhs\ViewHelpers\Iterator;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
 
 /**
  * ### Iterator: Filter ViewHelper
  *
  * Filters an array by filtering the array, analysing each member
- * and assering if it is equal to (weak type) the `filter` parameter.
+ * and asserting if it is equal to (weak type) the `filter` parameter.
  * If `propertyName` is set, the ViewHelper will try to extract this
  * property from each member of the array.
  *
@@ -26,8 +24,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderS
  */
 class FilterViewHelper extends AbstractViewHelper
 {
-    use CompileWithContentArgumentAndRenderStatic;
-
     /**
      * @var boolean
      */
@@ -79,7 +75,7 @@ class FilterViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
-        $subject = $renderChildrenClosure();
+        $subject = $arguments['subject'] ?? $renderChildrenClosure();
         $filter = $arguments['filter'];
         $propertyName = $arguments['propertyName'];
         $preserveKeys = (boolean) $arguments['preserveKeys'];
